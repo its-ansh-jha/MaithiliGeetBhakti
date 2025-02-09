@@ -1,47 +1,77 @@
-// YouTube Video Data
-const videos = [
-    { id: "g6XsluC-i9w", title: "Mobile Video 1" },
-    { id: "y3NVjgVkyLY", title: "Mobile Video 2" },
-    { id: "JXffWEm8rUw", title: "Mobile Video 3" },
-    { id: "YoYRszpBe20", title: "Mobile Video 4" }
-];
+/* Import Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
-// Function to Display Thumbnails
-function loadVideos() {
-    const container = document.getElementById("video-container");
-    container.innerHTML = ""; // Clear previous content
-
-    videos.forEach(video => {
-        const videoDiv = document.createElement("div");
-        videoDiv.classList.add("video");
-
-        // YouTube Thumbnail URL
-        const thumbnailUrl = `https://img.youtube.com/vi/${video.id}/mqdefault.jpg`;
-
-        videoDiv.innerHTML = `
-            <h3>${video.title}</h3>
-            <img src="${thumbnailUrl}" alt="${video.title}" data-videoid="${video.id}">
-        `;
-
-        // Add Click Event to Replace Thumbnail with Video
-        videoDiv.addEventListener("click", function () {
-            this.innerHTML = `
-                <iframe 
-                    src="https://www.youtube.com/embed/${video.id}" 
-                    frameborder="0" 
-                    allowfullscreen>
-                </iframe>
-            `;
-        });
-
-        container.appendChild(videoDiv);
-    });
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
-// Dark Mode Toggle
-document.getElementById("theme-toggle").addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
-});
+/* Dark Theme */
+body {
+    background-color: #121212;
+    color: #ffffff;
+    text-align: center;
+    padding-bottom: 50px;
+}
 
-// Load Videos on Page Load
-window.onload = loadVideos;
+header {
+    background: linear-gradient(to right, #ff9800, #e65100);
+    color: white;
+    padding: 15px;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.play-all-btn {
+    background: #ff9800;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background 0.3s ease;
+}
+
+.play-all-btn:hover {
+    background: #f57c00;
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.video {
+    background: #1e1e1e;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(255, 152, 0, 0.2);
+}
+
+iframe {
+    width: 100%;
+    height: 180px;
+    border-radius: 10px;
+}
+
+footer {
+    background: #1e1e1e;
+    color: #ff9800;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+}
